@@ -24,10 +24,10 @@
 
   <!-- Facebook SDK -->
   <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" nonce="YOUR_NONCE"></script>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"></script>
 
   <!-- Header -->
-  <header class="site-header">
+  <header class="site-header" role="banner">
     <div class="grid-container">
       <div class="site-header__inner">
         <div class="site-header__logo">
@@ -36,10 +36,11 @@
           </a>
         </div>
 
-        <button class="site-header__mobile-toggle" id="mobileMenuToggle" aria-expanded="false" aria-label="Toggle menu">
-          <span></span>
-          <span></span>
-          <span></span>
+        <button class="site-header__mobile-toggle" id="mobileMenuToggle" aria-expanded="false" aria-label="Toggle navigation menu">
+          <span class="sr-only">Menu</span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
         </button>
 
         <nav class="site-header__nav" id="mainNav" aria-label="Primary navigation">
@@ -56,15 +57,15 @@
     </div>
   </header>
 
-  <main id="main-content">
+  <main id="main-content" role="main">
 
     <!-- Hero Section -->
-    <section class="usa-hero hero-djfs" aria-label="Introduction">
+    <section class="usa-hero hero-djfs" aria-labelledby="hero-heading">
       <div class="grid-container">
         <div class="hero-content-wrapper">
           <div class="usa-hero__callout">
             <p class="usa-hero__heading--alt">Committed To Helping Brown County</p>
-            <h1 class="usa-hero__heading">
+            <h1 class="usa-hero__heading" id="hero-heading">
               Help Is Available For You, Your Kids, Your Family And More.
             </h1>
             <p class="hero-description">
@@ -80,12 +81,12 @@
           </div>
 
           <!-- Chat Widget UI -->
-          <div class="chat-widget" id="chatWidget">
+          <div class="chat-widget" id="chatWidget" role="dialog" aria-labelledby="chat-widget-title" aria-modal="false">
             <div class="chat-widget__header">
               <div class="chat-widget__header-content">
-                <i class="fas fa-comments chat-widget__header-icon"></i>
+                <i class="fas fa-comments chat-widget__header-icon" aria-hidden="true"></i>
                 <div class="chat-widget__header-text">
-                  <h2 class="chat-widget__title">Ask Us Anything</h2>
+                  <p class="chat-widget__title" id="chat-widget-title"><strong>Ask Us Anything</strong></p>
                   <p class="chat-widget__subtitle">Get instant help</p>
                 </div>
               </div>
@@ -100,7 +101,7 @@
               </div>
             </div>
 
-            <div class="chat-widget__messages">
+            <div class="chat-widget__messages" role="log" aria-live="polite" aria-atomic="false">
               <div class="chat-message chat-message--bot">
                 <div class="chat-message__avatar">
                   <i class="fas fa-user-tie"></i>
@@ -145,7 +146,7 @@
 
             <div class="chat-widget__input">
               <label for="chat-input-field" class="sr-only">Type your message</label>
-              <input type="text" id="chat-input-field" class="chat-widget__input-field" placeholder="Type your question..." aria-label="Chat message input">
+              <input type="text" id="chat-input-field" class="chat-widget__input-field" placeholder="Type your question..." autocomplete="off">
               <button class="chat-widget__send-button" aria-label="Send message">
                 <i class="fas fa-paper-plane"></i>
               </button>
@@ -241,7 +242,7 @@
         <ul class="usa-accordion usa-accordion--bordered quick-access-list">
           <li>
             <button class="usa-accordion__button" aria-expanded="false" aria-controls="child-support-services">
-              To Access Child Support Services
+              Child Support Services
             </button>
             <div id="child-support-services" class="usa-accordion__content usa-prose">
               <h3>Child Support Services</h3>
@@ -310,12 +311,12 @@
               <h4>Key Staff</h4>
               <p><em>Contact information available by calling 937-378-6104</em></p>
 
-              <a href="/child-support" class="usa-button">Learn More</a>
+              <a href="/child-support" class="usa-button">Learn More<span class="sr-only"> about Child Support Services</span></a>
             </div>
           </li>
           <li>
             <button class="usa-accordion__button" aria-expanded="false" aria-controls="public-assistance-services">
-              To Access Public Assistance services
+              Public Assistance Services
             </button>
             <div id="public-assistance-services" class="usa-accordion__content usa-prose">
               <h3>Public Assistance Services</h3>
@@ -375,12 +376,12 @@
               <h4>Key Contact</h4>
               <p><em>Contact information available by calling 937-378-6104</em></p>
 
-              <a href="/public-assistance" class="usa-button">Learn More</a>
+              <a href="/public-assistance" class="usa-button">Learn More<span class="sr-only"> about Public Assistance Services</span></a>
             </div>
           </li>
           <li>
             <button class="usa-accordion__button" aria-expanded="false" aria-controls="children-services">
-              To Access Children Services & Protective Services
+              Child & Adult Protective Services
             </button>
             <div id="children-services" class="usa-accordion__content usa-prose">
               <h3>Children Services & Protective Services</h3>
@@ -417,7 +418,7 @@
               <h4>Key Staff</h4>
               <p><em>Contact information available by calling 937-378-6104</em></p>
 
-              <a href="/children-services" class="usa-button">Learn More</a>
+              <a href="/children-services" class="usa-button">Learn More<span class="sr-only"> about Child and Adult Protective Services</span></a>
             </div>
           </li>
         </ul>
@@ -431,99 +432,107 @@
 
         <div class="support-grid">
           <!-- Medicaid Card -->
-          <article class="support-card">
-            <div class="support-card__icon">
-              <i class="fas fa-hospital" aria-hidden="true"></i>
+          <article class="support-card support-card--image">
+            <div class="support-card__bg-image" style="background-image: url('public/medicaid.jpg');"></div>
+            <div class="support-card__overlay"></div>
+            <div class="support-card__content">
+              <h3 class="support-card__title">Medicaid</h3>
+              <p class="support-card__description">
+                Federally funded health care program that provides assistance to certain low-income and medically vulnerable people.
+              </p>
+              <a href="/medicaid" class="support-card__cta">Learn more<span class="sr-only"> about Medicaid</span></a>
             </div>
-            <h3 class="support-card__title">Medicaid</h3>
-            <p class="support-card__description">
-              Federally funded health care program that provides assistance to certain low-income and medically vulnerable people.
-            </p>
-            <a href="/medicaid" class="support-card__cta" aria-label="Learn more about Medicaid">Learn more</a>
           </article>
 
           <!-- Food & Cash Assistance Card -->
-          <article class="support-card">
-            <div class="support-card__icon">
-              <i class="fas fa-shopping-basket" aria-hidden="true"></i>
+          <article class="support-card support-card--image">
+            <div class="support-card__bg-image" style="background-image: url('public/food-assistance.jpg');"></div>
+            <div class="support-card__overlay"></div>
+            <div class="support-card__content">
+              <h3 class="support-card__title">Food & Cash Assistance</h3>
+              <p class="support-card__description">
+                Public Assistance benefits are available to Ohioans, including food, cash, medicaid and child care.
+              </p>
+              <a href="/public-assistance" class="support-card__cta">Learn more<span class="sr-only"> about Food and Cash Assistance</span></a>
             </div>
-            <h3 class="support-card__title">Food & Cash Assistance</h3>
-            <p class="support-card__description">
-              Public Assistance benefits are available to Ohioans, including food, cash, medicaid and child care.
-            </p>
-            <a href="/public-assistance" class="support-card__cta" aria-label="Learn more about Food and Cash Assistance">Learn more</a>
           </article>
 
           <!-- Child Care Card -->
-          <article class="support-card">
-            <div class="support-card__icon">
-              <i class="fas fa-baby-carriage" aria-hidden="true"></i>
+          <article class="support-card support-card--image">
+            <div class="support-card__bg-image" style="background-image: url('public/child-care.jpg');"></div>
+            <div class="support-card__overlay"></div>
+            <div class="support-card__content">
+              <h3 class="support-card__title">Child Care</h3>
+              <p class="support-card__description">
+                Learn about the child care process, get help paying for Child Care or become a Child Care provider.
+              </p>
+              <a href="/child-care" class="support-card__cta">Learn more<span class="sr-only"> about Child Care</span></a>
             </div>
-            <h3 class="support-card__title">Child Care</h3>
-            <p class="support-card__description">
-              Learn about the child care process, get help paying for Child Care or become a Child Care provider.
-            </p>
-            <a href="/child-care" class="support-card__cta" aria-label="Learn more about Child Care">Learn more</a>
           </article>
 
           <!-- Child Support Enforcement Card -->
-          <article class="support-card">
-            <div class="support-card__icon">
-              <i class="fas fa-gavel" aria-hidden="true"></i>
+          <article class="support-card support-card--image">
+            <div class="support-card__bg-image" style="background-image: url('public/child-support.png');"></div>
+            <div class="support-card__overlay"></div>
+            <div class="support-card__content">
+              <h3 class="support-card__title">Child Support Enforcement</h3>
+              <p class="support-card__description">
+                All child support for Ohio's children goes through a CSEA. Brown County CSEA can accept cash, check, money orders, and credit card payments.
+              </p>
+              <a href="/child-support" class="support-card__cta">Learn more<span class="sr-only"> about Child Support Enforcement</span></a>
             </div>
-            <h3 class="support-card__title">Child Support Enforcement</h3>
-            <p class="support-card__description">
-              All child support for Ohio's children goes through a CSEA. Brown County CSEA can accept cash, check, money orders, and credit card payments.
-            </p>
-            <a href="/child-support" class="support-card__cta" aria-label="Learn more about Child Support Enforcement">Learn more</a>
           </article>
 
           <!-- Child Protective Services Card -->
-          <article class="support-card">
-            <div class="support-card__icon">
-              <i class="fas fa-shield-alt" aria-hidden="true"></i>
+          <article class="support-card support-card--image">
+            <div class="support-card__bg-image" style="background-image: url('public/child-protective.png');"></div>
+            <div class="support-card__overlay"></div>
+            <div class="support-card__content">
+              <h3 class="support-card__title">Child Protective Services</h3>
+              <p class="support-card__description">
+                Protecting our children is important. If you suspect that a child living in Brown County is being abused or neglected, call immediately.
+              </p>
+              <a href="/child-protective-services" class="support-card__cta">Learn more<span class="sr-only"> about Child Protective Services</span></a>
             </div>
-            <h3 class="support-card__title">Child Protective Services</h3>
-            <p class="support-card__description">
-              Protecting our children is important. If you suspect that a child living in Brown County is being abused or neglected, call immediately.
-            </p>
-            <a href="/child-protective-services" class="support-card__cta" aria-label="Learn more about Child Protective Services">Learn more</a>
           </article>
 
           <!-- Adoption & Foster Care Card -->
-          <article class="support-card">
-            <div class="support-card__icon">
-              <i class="fas fa-users" aria-hidden="true"></i>
+          <article class="support-card support-card--image">
+            <div class="support-card__bg-image" style="background-image: url('public/adoption.png');"></div>
+            <div class="support-card__overlay"></div>
+            <div class="support-card__content">
+              <h3 class="support-card__title">Adoption & Foster Care</h3>
+              <p class="support-card__description">
+                Are you interested in becoming a foster or adoptive parent? Children Services is here to help you.
+              </p>
+              <a href="/adoption-foster" class="support-card__cta">Learn more<span class="sr-only"> about Adoption and Foster Care</span></a>
             </div>
-            <h3 class="support-card__title">Adoption & Foster Care</h3>
-            <p class="support-card__description">
-              Are you interested in becoming a foster or adoptive parent? Children Services is here to help you.
-            </p>
-            <a href="/adoption-foster" class="support-card__cta" aria-label="Learn more about Adoption and Foster Care">Learn more</a>
           </article>
 
           <!-- Workforce Development Card -->
-          <article class="support-card">
-            <div class="support-card__icon">
-              <i class="fas fa-briefcase" aria-hidden="true"></i>
+          <article class="support-card support-card--image">
+            <div class="support-card__bg-image" style="background-image: url('public/workforce.png');"></div>
+            <div class="support-card__overlay"></div>
+            <div class="support-card__content">
+              <h3 class="support-card__title">Workforce Development</h3>
+              <p class="support-card__description">
+                OhioMeansJobs - Brown County is a resource for veterans, job seekers and employers. Get resume help, training and financial support.
+              </p>
+              <a href="/workforce" class="support-card__cta">Learn more<span class="sr-only"> about Workforce Development</span></a>
             </div>
-            <h3 class="support-card__title">Workforce Development</h3>
-            <p class="support-card__description">
-              OhioMeansJobs - Brown County is a resource for veterans, job seekers and employers. Get resume help, training and financial support.
-            </p>
-            <a href="/workforce" class="support-card__cta" aria-label="Learn more about Workforce Development">Learn more</a>
           </article>
 
           <!-- Job Postings Card -->
-          <article class="support-card">
-            <div class="support-card__icon">
-              <i class="fas fa-dollar-sign" aria-hidden="true"></i>
+          <article class="support-card support-card--image">
+            <div class="support-card__bg-image" style="background-image: url('public/job.png');"></div>
+            <div class="support-card__overlay"></div>
+            <div class="support-card__content">
+              <h3 class="support-card__title">Job Postings</h3>
+              <p class="support-card__description">
+                Current job openings at Brown County DJFS. Information on how to apply and Brown County's Drug Free Workplace Policy.
+              </p>
+              <a href="/jobs" class="support-card__cta">View Openings<span class="sr-only"> at Brown County DJFS</span></a>
             </div>
-            <h3 class="support-card__title">Job Postings</h3>
-            <p class="support-card__description">
-              Current job openings at Brown County DJFS. Information on how to apply and Brown County's Drug Free Workplace Policy.
-            </p>
-            <a href="/jobs" class="support-card__cta" aria-label="View job openings at Brown County DJFS">View Openings</a>
           </article>
         </div>
       </div>
@@ -680,7 +689,7 @@
   </main>
 
   <!-- Footer -->
-  <footer class="site-footer" aria-label="Footer">
+  <footer class="site-footer" role="contentinfo">
     <div class="site-footer__main">
       <div class="grid-container">
         <div class="site-footer__grid">
@@ -689,15 +698,18 @@
               <img src="logo-white.png" alt="Brown County Department of Job & Family Services" class="footer-logo">
             </a>
             <p>We provide Brown County residents with supportive services for public assistance, child and adult protection, and workforce development.</p>
-            <div class="site-footer__social" aria-label="Follow Brown County DJFS">
-              <a href="https://www.facebook.com/" class="site-footer__social-link" aria-label="Facebook">
+            <div class="site-footer__social" aria-label="Social media">
+              <a href="https://www.facebook.com/BrownCountyDJFS" class="site-footer__social-link" aria-label="Follow us on Facebook" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                <span class="sr-only">Opens in a new window</span>
               </a>
-              <a href="https://www.linkedin.com/" class="site-footer__social-link" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/company/brown-county-djfs" class="site-footer__social-link" aria-label="Connect with us on LinkedIn" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                <span class="sr-only">Opens in a new window</span>
               </a>
-              <a href="https://www.youtube.com/" class="site-footer__social-link" aria-label="YouTube">
+              <a href="https://www.youtube.com/@BrownCountyDJFS" class="site-footer__social-link" aria-label="Watch our videos on YouTube" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-youtube" aria-hidden="true"></i>
+                <span class="sr-only">Opens in a new window</span>
               </a>
             </div>
           </div>
